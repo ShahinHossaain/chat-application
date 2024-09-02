@@ -9,6 +9,9 @@ const cookieParser = require('cookie-parser');
 // INTERNAL IMPORTS
 const { notFoundHandler, errorHandler } = require('./middlewares/common/errorHandler');
 const loginRouter = require('./routers/loginRouter');
+const userRouter = require('./routers/userRouter');
+const inboxRouter = require('./routers/inboxRouter');
+
 
 const app = express();
 dotenv.config();
@@ -38,8 +41,8 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 
 // ROUTING SETUP
 app.use('/', loginRouter)
-// app.use('/users', userRouter)
-// app.use('/inbox', inboxRouter)
+app.use('/users', userRouter)
+app.use('/inbox', inboxRouter)
 
 // 404 NOT FOUND HANDLER
 app.use(notFoundHandler)
