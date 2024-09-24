@@ -1,0 +1,102 @@
+<div class="modal-wrapper" id="add-user-modal">
+    <div class="modal">
+        <a href="#" onclick="closeModal()" class="modal-close">+</a>
+        <div class="modal-title">
+            <h2>Create New User</h2>
+        </div>
+        <div class="modal-body">
+            <form
+            method="POST"
+            action="/users"
+            enctype="multipart/form-data"
+            id="add-user-form"
+            >
+                <input type="text" placeholder="enter name" name="name" />
+                <p class="error name-error"></p>
+                <input type="text" placeholder="enter email" name="email" />
+                <p class="error email-error">rr</p>
+                <input type="text" placeholder="enter mobile" name="mobile" />
+                <p class="error mobile-error">rr</p>
+                <input type="password" placeholder="enter password" name="password" />
+                <p class="error password-error">rr</p>
+                <input type="file" name="avatar" />
+                <p class="error avatar-error">rr</p>
+
+                <p class="error common-error">rr</p>
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const modal = document.querySelector("#add-user-modal");
+    const form = document.querySelector("#add-user-form");
+
+    // SUCCESS TOAST
+     const successToast = Toastify({
+            text: "User was added successfully! Reloading the list...",
+            duration: 1000,
+        });
+    function closeModal() {
+            modal.style.display = "none";
+    }
+    function openModal() {
+            modal.style.display = "block";
+    }
+
+    // FORM SUBMIT HANDLER
+    form.onsubmit = async function (event) {
+        event.preventDefault();
+
+        // CLEAR ERROR FIRST 
+        const errorPlaceHolder = document.querySelectorAll("p.error");
+        for (let i = 0; i < errorPlaceHolder.length; i++) {
+            errorPlaceHolder[i].style.display = "none";
+        } 
+
+        const inputErrors = document.querySelectorAll("input.error");
+        if(inputErrors.length > 0){
+            for( let j = 0; j < inputErrors.length; j++){
+                inputErrors[j].classList.remove("error");
+            }
+        }
+        //PREPARE THE FROM DATA 
+        const formData = new FormData(form);
+
+        // SEND THE REQUEST TO THE SERVER
+        let response = await fetch("/users", {
+            method: "POST",
+            body: formData
+        })
+
+        // GET RESPONSE
+        let result = await response.json();
+
+        // HANDLE ERROR AND RESPONSE
+        if(result.errors){
+            // ERRORS
+            Object.keys(result.errors).forEach(filename =>{
+                // ADD error CLASS TO ALL ERROR INPUTS
+                form[filename].classList.add("error");
+
+                // SET ALL ERROR PLACEHOLDERS (P TAG) TEXT CONTENT
+                const errorPlaceHolder = document.querySelector(`.${filename}-error`);
+                errorPlaceHolder.textContent = result.errors[filename].msg;
+
+                // MAKE ALL ERROR PLACEHOLDER VISIBLE
+                errorPlaceHolder.style.display = "block";
+            })
+        }else {
+            // SUCCESS
+            successToast.showToast();
+            closeModal();
+            document.querySelector("p.error").style.display = "none";
+            // RELOAD PAGE AFTER 1S
+            setTimeout(() =>{
+                location.reload();  
+            }, 1000);
+        }
+    }
+        
+</script>
