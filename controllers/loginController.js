@@ -1,6 +1,7 @@
 // EXTERNAL INPUTS
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken')
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const createError = require("http-errors");
 
 // INTERNAL INPUTS
 const User = require("../models/people");
@@ -37,16 +38,46 @@ const login = async (req, res, next) => {
                     role: "user"
                 }
 
-                const token = jwt.sign()
-            } else {
+                // GENERATE TOKEN
+                const token = jwt.sign(userObject, process.env.JWT_secret, {
+                    expiresIn: process.env.JWT_EXPIRY
+                });
 
+                // SET COOKIES
+                res.cookie(process.env.COOKIE_NAME, token, {
+                    maxAge: process.env.JWT_EXPIRY,
+                    httpOnly: true,
+                    signed: true
+                });
+
+                //SET LOGGED IN USER LOCAL IDENTIFIER
+                res.locals.loggedInUser = userObject;
+
+                res.render("inbox");
+            } else {
+                throw createError("Login failed! Please try again.");
             }
         } else {
-
+            throw createError("Login failed! Please try again..");
         }
     } catch (error) {
-
+        res.render("index", {
+            data: {
+                username: req.body.username,
+            },
+            errors: {
+                common: {
+                    msg: error.message,
+                }
+            }
+        })
     }
 }
 
-module.exports = { getLogin }
+// DO LOGOUT
+const logout = (req, res) => {
+    res.clearCookie(process.env.COOKIE_NAME);
+    res.send("Logged out");
+};
+
+module.exports = { getLogin, login, logout };

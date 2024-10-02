@@ -1,6 +1,6 @@
 // GET LOGIN PAGE
 const getInbox = (req, res, next) => {
-    res.render("index")
+    res.render("inbox")
 }
 
 module.exports = { getInbox }

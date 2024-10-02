@@ -5,7 +5,8 @@ const { unlink } = require("fs");
 const path = require("path");
 
 // INTERNAL INPUTS
-const User = require("../../../models/people");
+const User = require("../../models/people");
+
 
 // ADD USER
 const addUserValidators = [
@@ -54,11 +55,7 @@ const addUserValidationHandler = (req, res, next) => {
 
     const error = validationResult(req);
 
-
     let mappedErrors = error.mapped();
-
-
-
 
     if (Object.keys(mappedErrors)?.length === 0) {
         next();
