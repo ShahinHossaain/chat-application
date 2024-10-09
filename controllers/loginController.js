@@ -2,9 +2,11 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const createError = require("http-errors");
+const moment = require('moment');
+
 
 // INTERNAL INPUTS
-const User = require("../models/people");
+const User = require("../models/People");
 
 // GET LOGIN PAGE
 const getLogin = (req, res, next) => {
@@ -32,9 +34,11 @@ const login = async (req, res, next) => {
             if (isValidPassword) {
                 // PREPARE THE USER OBJECT TO GENERATE TOKEN.
                 const userObject = {
+                    userid: user._id,
                     username: user.name,
                     mobile: user.mobile,
                     email: user.email,
+                    avatar: user.avatar,
                     role: "user"
                 }
 
@@ -52,8 +56,12 @@ const login = async (req, res, next) => {
 
                 //SET LOGGED IN USER LOCAL IDENTIFIER
                 res.locals.loggedInUser = userObject;
+                // todo: change
+                // res.render("inbox", {
+                //     moment: moment
+                // });
+                res.redirect("/inbox");
 
-                res.render("inbox");
             } else {
                 throw createError("Login failed! Please try again.");
             }

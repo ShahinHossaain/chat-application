@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const moment = require("moment");
 
 
 // INTERNAL IMPORTS
@@ -11,10 +12,16 @@ const { notFoundHandler, errorHandler } = require('./middlewares/common/errorHan
 const loginRouter = require('./routers/loginRouter');
 const userRouter = require('./routers/userRouter');
 const inboxRouter = require('./routers/inboxRouter');
+const http = require('http');
 
 
 const app = express();
+const server = http.createServer(app);
 dotenv.config();
+
+// SOCKET CREATION 
+const io = require('socket.io')(server);
+global.io = io;
 
 // DATABASE CONNECTION 
 mongoose.connect(process.env.MONGO_CONNECTION_STRING)
@@ -50,6 +57,6 @@ app.use(notFoundHandler)
 // COMMON ERROR HANDLER
 app.use(errorHandler);
 
-app.listen(process.env.PORT, () => {
+server.listen(process.env.PORT, () => {
     console.log(`app listening to port ${process.env.PORT}`)
 });

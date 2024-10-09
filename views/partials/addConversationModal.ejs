@@ -71,6 +71,7 @@
     // get response
     let result = await response.json();
 
+    console.log("acm result", result)
     // handle error and response
     if (result.errors) {
       const errorplaceholder = document.querySelector("p.error");

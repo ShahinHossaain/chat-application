@@ -7,7 +7,7 @@ const { getUser, addUser, removeUser } = require('../controllers/userController'
 const decorateHtmlResponse = require('../middlewares/common/decorateHtmlResponse');
 const avatarUpload = require('../middlewares/users/avatarUploads');
 const { addUserValidators, addUserValidationHandler } = require('../middlewares/users/userValidators');
-const People = require('../models/people');
+const People = require('../models/People');
 const { checkLogin } = require('../middlewares/common/checkLogin');
 
 
