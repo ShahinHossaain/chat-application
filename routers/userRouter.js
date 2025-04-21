@@ -20,10 +20,11 @@ router.get(
     checkLogin,
     getUser);
 
+
 // ADD USER 
 router.post(
     "/",
-    checkLogin,
+    // checkLogin,
     avatarUpload,
     addUserValidators,
     addUserValidationHandler,

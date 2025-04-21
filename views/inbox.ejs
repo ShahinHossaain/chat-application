@@ -41,7 +41,6 @@
 
   <div id="chat-title">
     <span id="conversation-partner"></span>
-    <p><%= loggedInUser.username %></p>
     <img src="./images/trash.png" alt="Delete Conversation" />
   </div>
 
@@ -52,8 +51,10 @@
 
   <!-- send message form -->
   <form id="chat-form" method="post" enctype="multipart/form-data">
-    <label for="attachment"><img src="./images/attachment.png" alt="Add Attachment" /></label>
-    <input type="file" multiple name="attachment" class="hide" id="attachment" />
+    <label for="attachment">
+      <!-- <img src="./images/attachment.png" alt="Add Attachment" /> -->
+    </label>
+    <!-- <input type="file" multiple name="attachment" class="hide" id="attachment" /> -->
     <input type="text" name="message" placeholder="Type a message" autocomplete="off" />
   </form>
 
@@ -156,6 +157,7 @@
             let attachments = '<div class="attachments">';
 
             if (message.attachment && message.attachment.length > 0) {
+
               message.attachment.forEach(attachment => {
                 attachments += `<img src="./uploads/attachments/${attachment}" /> `;
               });

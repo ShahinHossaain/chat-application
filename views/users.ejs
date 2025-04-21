@@ -1,12 +1,14 @@
 <%- include('./partials/header.ejs'); %>
 <div class="manageUser-container">
   <div id="title">
-    <h2>Manage Users <%= loggedInUser.username %></h2>
+    <h2>All Users are here, <%= loggedInUser.username %></h2>
   </div>
 
+  <% if (loggedInUser.username === "admin") { %>
   <div class="new-message-container new-user">
     <a href="#" onclick="openModal()">+</a>
   </div>
+  <% } %>
 
   <div id="users-table">
     <table>
@@ -14,7 +16,9 @@
         <tr>
           <th>Name</th>
           <th>Email</th>
+          <% if (loggedInUser.username === "admin") { %>
           <th>Manage</th>
+          <% } %>
         </tr>
       </thead>
       <tbody id="users-table">
@@ -33,9 +37,13 @@
           <td>
             <%= user.email %>
           </td>
+
+          <% if (loggedInUser.username === "admin") { %>
           <td class="manage">
             <img src="./images/trash.png" alt="Delete" onclick="deleteUser('<%= user._id %>')" />
           </td>
+          <% } %>
+
         </tr>
         <% }); %>
       </tbody>

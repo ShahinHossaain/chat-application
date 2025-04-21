@@ -36,7 +36,6 @@ async function searchUser(req, res, next) {
     const mobile_search_regex = new RegExp("^" + escape("+88" + searchQuery));
     const email_search_regex = new RegExp("^" + escape(searchQuery) + "$", "i");
 
-    console.log("form searchUser", name_search_regex, mobile_search_regex, email_search_regex)
 
     try {
         if (searchQuery !== "") {
@@ -56,7 +55,6 @@ async function searchUser(req, res, next) {
                 },
                 "name avatar"
             );
-            console.log("User", users, res.locals.loggedInUser.userid);
 
             const loggedInUserId = res.locals.loggedInUser.userid;
 
@@ -68,7 +66,6 @@ async function searchUser(req, res, next) {
             });
 
 
-            // console.log("coliu", conversationsOfLoggedInUser)
 
             conversationsOfLoggedInUser.forEach((conversation) => {
 
@@ -80,7 +77,6 @@ async function searchUser(req, res, next) {
                 });
 
             })
-            console.log("Users", users)
 
             res.json(users);
         } else {

@@ -30,6 +30,7 @@ const login = async (req, res, next) => {
                 req.body.password,
                 user.password
             )
+            // const isValidPassword = true;
 
             if (isValidPassword) {
                 // PREPARE THE USER OBJECT TO GENERATE TOKEN.
