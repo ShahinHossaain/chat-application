@@ -22,7 +22,6 @@ const getUser = async (req, res, next) => {
 
 // ADD USER
 const addUser = async (req, res, next) => {
-    console.log("code", req.body);
     let newUser;
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
