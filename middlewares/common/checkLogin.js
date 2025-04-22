@@ -10,16 +10,20 @@ const checkLogin = (req, res, next) => {
             token = cookies[process.env.COOKIE_NAME];
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             req.user = decoded;
+            console.log("inside try")
 
             // pass user info to response locals
             if (res.locals.html) {
                 res.locals.loggedInUser = decoded;
+                console.log("inside res.locals.html")
             }
             next();
         } catch (err) {
             if (res.locals.html) {
+                console.log("inside catch locals.html")
                 res.redirect("/");
             } else {
+                console.log("inside catch else")
                 res.status(500).json({
                     errors: {
                         common: {
