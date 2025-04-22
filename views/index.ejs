@@ -15,10 +15,11 @@
 
       <input type="password" name="password" placeholder="enter password" />
       <% if(errors.password) { %>
-      <p class="error show"><%= errors.password.msg console.log(errors.password)</p>
+      <p class="error show"><%= errors.password.msg %></p>
+      <% console.log(errors.password); %>
       <% } %>
 
-        <% if(errors.common) { %>
+      <% if(errors.common) { %>
       <p class="error show"><%= errors.common.msg %></p>
       <% } %>
       <input type="submit" value="Login" />
