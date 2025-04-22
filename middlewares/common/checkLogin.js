@@ -20,7 +20,7 @@ const checkLogin = (req, res, next) => {
             next();
         } catch (err) {
             if (res.locals.html) {
-                console.log("inside catch locals.html")
+                console.log("inside catch locals.html", err)
                 res.redirect("/");
             } else {
                 console.log("inside catch else")
