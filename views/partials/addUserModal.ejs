@@ -64,6 +64,7 @@
     // SEND THE REQUEST TO THE SERVER
     let response = await fetch("/users", {
       method: "POST",
+      credentials: "include",
       body: formData
     })
 

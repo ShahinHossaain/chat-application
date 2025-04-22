@@ -36,7 +36,10 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING)
     });
 
 // REQUEST PARSERS 
-app.use(cors());
+app.use(cors({
+    origin: 'https://chat-application-hv5h.onrender.com',
+    credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));

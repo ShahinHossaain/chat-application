@@ -206,6 +206,7 @@
     // send the request to server
     let response = await fetch("/inbox/message", {
       method: "POST",
+      credentials: "include",
       body: formData,
     });
 
