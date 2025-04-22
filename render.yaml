@@ -1,1 +1,8 @@
-startCommand: node app.js
+services:
+  - type: web
+    name: chat-application
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    rootDir: .
