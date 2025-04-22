@@ -6,7 +6,7 @@ const moment = require('moment');
 
 
 // INTERNAL INPUTS
-const User = require("../People");
+const User = require('../models/People');
 
 // GET LOGIN PAGE
 const getLogin = (req, res, next) => {
