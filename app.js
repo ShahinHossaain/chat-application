@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const moment = require("moment");
+const cors = require('cors');
+
 
 
 // INTERNAL IMPORTS
@@ -34,6 +36,7 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING)
     });
 
 // REQUEST PARSERS 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
