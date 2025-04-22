@@ -1,10 +1,10 @@
 // external imports
 const createError = require("http-errors");
 // internal imports
-const User = require("../models/People.js");
-const Conversation = require("../models/Conversation.js");
-const Message = require("../models/Message.js");
-const escape = require("../utilities/escape.js");
+const User = require("../models/People");
+const Conversation = require("../models/Conversation");
+const Message = require("../models/Message");
+const escape = require("../utilities/escape");
 // todo: changed
 const moment = require('moment');
 
