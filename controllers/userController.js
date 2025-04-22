@@ -1,5 +1,5 @@
 // EXTERNAL INPUTS
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { unlink } = require('fs');
 const path = require('path');
 

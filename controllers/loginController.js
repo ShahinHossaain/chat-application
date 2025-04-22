@@ -1,5 +1,5 @@
 // EXTERNAL INPUTS
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const createError = require("http-errors");
 const moment = require('moment');
