@@ -8,7 +8,7 @@ const {
     addConversation,
     getMessages,
     sendMessage,
-} = require("../src/controllers/inboxController");
+} = require("../controllers/inboxController");
 const decorateHtmlResponse = require("../middlewares/common/decorateHtmlResponse");
 const { checkLogin } = require("../middlewares/common/checkLogin");
 const attachmentUpload = require("../middlewares/inbox/attachmentUpload");

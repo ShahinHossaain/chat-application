@@ -5,7 +5,7 @@ const { unlink } = require("fs");
 const path = require("path");
 
 // INTERNAL INPUTS
-const User = require("../../src/models/People");
+const User = require("../../models/People");
 
 
 // ADD USER

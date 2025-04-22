@@ -2,7 +2,7 @@
 const express = require('express');
 
 // INTERNAL IMPORT
-const { getLogin, login, logout } = require('../src/controllers/loginController');
+const { getLogin, login, logout } = require('../controllers/loginController');
 const decorateHtmlResponse = require('../middlewares/common/decorateHtmlResponse');
 const { doLoginValidators, doLoginValidationHandler } = require('../middlewares/login/loginValidators');
 const { redirectLoggedIn } = require('../middlewares/common/checkLogin');
