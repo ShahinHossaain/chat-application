@@ -36,6 +36,10 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING)
 // REQUEST PARSERS 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+app.use(express.static('./stylesheets/style.css'));
+
+
 
 // SET VIEW ENGINE 
 app.set('view engine', 'ejs');
