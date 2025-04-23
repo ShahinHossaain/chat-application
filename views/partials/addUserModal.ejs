@@ -14,8 +14,8 @@
         <p class="error mobile-error">rr</p>
         <input type="password" placeholder="enter password" name="password" />
         <p class="error password-error">rr</p>
-        <input type="file" name="avatar" />
-        <p class="error avatar-error">rr</p>
+        <!-- <input type="file" name="avatar" />
+        <p class="error avatar-error">rr</p> -->
 
         <p class="error common-error">rr</p>
         <input type="submit" value="Submit" />
@@ -64,7 +64,6 @@
     // SEND THE REQUEST TO THE SERVER
     let response = await fetch("/users", {
       method: "POST",
-      credentials: "include",
       body: formData
     })
 

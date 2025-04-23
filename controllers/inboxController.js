@@ -10,7 +10,6 @@ const moment = require('moment');
 
 // get inbox page
 async function getInbox(req, res, next) {
-    console.log("getInbox called");
     try {
         const conversations = await Conversation.find({
             $or: [

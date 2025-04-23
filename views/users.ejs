@@ -26,9 +26,9 @@
         <tr id="<%= user.id %>">
           <td class="name">
             <% if (user.avatar) { %>
-            <img src="./uploads/avatars/<%= user.avatar %>" />
+            <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_640.png" />
             <% } else { %>
-            <img src="./images/nophoto.png" />
+            <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_640.png" />
             <% } %>
             <span>
               <%= user.name %>
@@ -40,7 +40,7 @@
 
           <% if (loggedInUser.username === "admin") { %>
           <td class="manage">
-            <img src="./images/trash.png" alt="Delete" onclick="deleteUser('<%= user._id %>')" />
+            <img src="https://cdn.pixabay.com/photo/2017/11/10/05/24/trash-2935441_640.png" alt="Delete" onclick="deleteUser('<%= user._id %>')" />
           </td>
           <% } %>
 

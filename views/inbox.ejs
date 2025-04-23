@@ -1,7 +1,7 @@
 <%- include('./partials/header.ejs'); %>
 <div id="chat-container">
   <div id="search-container">
-    <input type="text" placeholder="Search" />
+    <!-- <input type="text" placeholder="Search" /> -->
   </div>
   <div id="conversation-list">
     <% data.forEach(function(conversation) { %>
@@ -9,7 +9,7 @@
     <% if(conversation.creator.id == loggedInUser.userid) { %>
     <div class="conversation" onclick="getMessages('<%= conversation._id %>', '<%= conversation.participant.name %>')">
       <% if (conversation.participant.avatar) { %>
-      <img src="./uploads/avatars/<%= conversation.participant.avatar %>" alt="<%= conversation.participant.name %>" />
+      <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_640.png" title="<%= conversation.participant.name %>" />
       <% } else { %>
       <img src="./images/nophoto.png" />
       <% } %>
@@ -19,7 +19,7 @@
     <% } else { %>
     <div class="conversation" onclick="getMessages('<%= conversation._id %>', '<%= conversation.creator.name %>')">
       <% if (conversation.creator.avatar) { %>
-      <img src="./uploads/avatars/<%= conversation.creator.avatar %>" alt="<%= conversation.creator.name %>" />
+      <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_640.png" alt="<%= conversation.creator.name %>" title="<%= conversation.creator.name %>" />
       <% } else { %>
       <img src="./images/nophoto.png" />
       <% } %>
@@ -41,7 +41,7 @@
 
   <div id="chat-title">
     <span id="conversation-partner"></span>
-    <img src="./images/trash.png" alt="Delete Conversation" />
+    <img src="https://cdn.pixabay.com/photo/2017/11/10/05/24/trash-2935441_640.png" alt="Delete Conversation" />
   </div>
 
   <!-- placeholder div if no messages are in messages area -->
@@ -90,7 +90,7 @@
 
       if (data.message.attachment && data.message.attachment.length > 0) {
         data.message.attachment.forEach(attachment => {
-          attachments += `<img src="./uploads/attachments/${attachment}" /> `;
+          attachments += `<img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_640.png" /> `;
         });
       }
 
@@ -151,7 +151,7 @@
           data.messages.forEach((message) => {
             let senderAvatar = message.sender.avatar ? `./uploads/avatars/${message.sender.avatar}` : './images/nophoto.png';
             const messageClass = message.sender.id === loggedinUserId ? 'you-message' : 'other-message';
-            const showAvatar = message.sender.id === loggedinUserId ? '' : `<img src="${senderAvatar}" alt="${message.sender.name}" />`;
+            const showAvatar = message.sender.id === loggedinUserId ? '' : `<img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_640.png" alt="${message.sender.name}" />`;
 
             // message attachments
             let attachments = '<div class="attachments">';
@@ -159,7 +159,7 @@
             if (message.attachment && message.attachment.length > 0) {
 
               message.attachment.forEach(attachment => {
-                attachments += `<img src="./uploads/attachments/${attachment}" /> `;
+                attachments += `<img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_640.png" /> `;
               });
             }
 
